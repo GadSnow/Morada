@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+/* NavBar */
+
+.nav__container {
+    background-color: rgb(38, 38, 149);
+    color: white;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.morada__brand {
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.morada__brand {
+    margin-right: 25px;
+}
+
+ul {
+    display: flex;
+}
+
+.nav__item {
+    list-style: none;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.nav__item a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+
+/* NavBar */
