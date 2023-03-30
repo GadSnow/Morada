@@ -16,10 +16,28 @@
 
 	</head>
 	<body>
-		{% block body %}{% endblock %}
+		<div class="block">
+			<div class="nav__container">
+				<nav>
+					<h2 class="morada__brand">
+						<a href="{{ path('app_home')}}">Morada Entreprise</a>
+					</h2>
+					<div>
+						<ul>
+							<li class="nav__item">
+								<a href="{{ path('app_housing_show') }}">Voir les biens</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</body>
-</html>
+		</div>
+		<div class="app_container"> {% block body %}{% endblock %}
+			</div>
+
+			{% block javascripts %}
+				<script src="{{ asset('./build/app.js') }}"></script>
+			{% endblock %}
+		</body>
+	</html>

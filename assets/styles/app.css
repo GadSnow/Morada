@@ -5,6 +5,11 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.app_container {
+    padding-left: calc(50vw - 570px);
+    padding-right: calc(50vw - 570px);
+}
+
 
 /* NavBar */
 
@@ -19,6 +24,11 @@
 
 .morada__brand {
     cursor: pointer;
+}
+
+.morada__brand a {
+    text-decoration: none;
+    color: white;
 }
 
 nav {
