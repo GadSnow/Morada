@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Provider{% endblock %}
+
+{% block body %}
+    <h1>Provider</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ provider.id }}</td>
+            </tr>
+            <tr>
+                <th>ProviderName</th>
+                <td>{{ provider.providerName }}</td>
+            </tr>
+            <tr>
+                <th>ProviderNumber</th>
+                <td>{{ provider.providerNumber }}</td>
+            </tr>
+            <tr>
+                <th>ProviderEmail</th>
+                <td>{{ provider.providerEmail }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ provider.createdAt ? provider.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_provider_index') }}">back to list</a>
+
+    <a href="{{ path('app_provider_edit', {'id': provider.id}) }}">edit</a>
+
+    {{ include('provider/_delete_form.html.twig') }}
+{% endblock %}

@@ -20,8 +20,6 @@ class Housing
     #[ORM\Column]
     private ?int $numberOfRooms = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $slug = null;
 
     #[ORM\Column]
     private ?int $price = null;
@@ -40,6 +38,12 @@ class Housing
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?bool $sold = null;
+
+    #[ORM\Column]
+    private ?int $bedrooms = null;
 
     public function getId(): ?int
     {
@@ -66,18 +70,6 @@ class Housing
     public function setNumberOfRooms(int $numberOfRooms): self
     {
         $this->numberOfRooms = $numberOfRooms;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }
@@ -150,6 +142,30 @@ class Housing
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function isSold(): ?bool
+    {
+        return $this->sold;
+    }
+
+    public function setSold(bool $sold): self
+    {
+        $this->sold = $sold;
+
+        return $this;
+    }
+
+    public function getBedrooms(): ?int
+    {
+        return $this->bedrooms;
+    }
+
+    public function setBedrooms(int $bedrooms): self
+    {
+        $this->bedrooms = $bedrooms;
 
         return $this;
     }

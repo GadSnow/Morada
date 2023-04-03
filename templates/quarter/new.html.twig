@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Quarter{% endblock %}
+
+{% block body %}
+    <h1>Create new Quarter</h1>
+
+    {{ include('quarter/_form.html.twig') }}
+
+    <a href="{{ path('app_quarter_index') }}">back to list</a>
+{% endblock %}

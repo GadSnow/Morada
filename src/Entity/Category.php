@@ -24,9 +24,11 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Housing::class)]
     private Collection $housings;
 
+
     public function __construct()
     {
         $this->housings = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

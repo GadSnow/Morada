@@ -27,6 +27,7 @@ class Region
     public function __construct()
     {
         $this->cities = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

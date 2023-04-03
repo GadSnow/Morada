@@ -30,6 +30,7 @@ class City
     public function __construct()
     {
         $this->quarters = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
