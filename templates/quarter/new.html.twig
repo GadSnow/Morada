@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Quarter{% endblock %}
+{% block title %}New Quarter
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Quarter</h1>
 
-    {{ include('quarter/_form.html.twig') }}
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des quartiers: Ajout</h1>
 
-    <a href="{{ path('app_quarter_index') }}">back to list</a>
+		{{ include('quarter/_form.html.twig', { button_label: 'Enregistrer' }) }}
+
+		<a href="{{ path('app_quarter_index') }}" class="btn btn-secondary mt-3">Retour à la liste des quartiers</a>
+
+	</div>
 {% endblock %}

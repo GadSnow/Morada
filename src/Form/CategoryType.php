@@ -20,7 +20,7 @@ class CategoryType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Category::class,
-            'translation_domain' => 'forms'
+            'translation_domain' => 'category'
         ]);
     }
 }

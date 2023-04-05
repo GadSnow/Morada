@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}City
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1>Informations sur la ville
+			{{ city.cityName }}</h1>
+
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ city.id }}</td>
+				</tr>
+				<tr>
+					<th>CityName</th>
+					<td>{{ city.cityName }}</td>
+				</tr>
+				<tr>
+					<th>CreatedAt</th>
+					<td>{{ city.createdAt ? city.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_city_index') }}" class="btn btn-secondary">Retour à la liste des villes</a>
+
+		<a href="{{ path('app_city_edit', {'id': city.id}) }}" class="btn btn-primary">Modifier</a>
+
+		{{ include('city/_delete_form.html.twig') }}
+
+	</div>
+{% endblock %}

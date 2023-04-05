@@ -1,41 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Provider index{% endblock %}
+{% block title %}Provider index
+{% endblock %}
 
 {% block body %}
-    <h1>Provider index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>ProviderName</th>
-                <th>ProviderNumber</th>
-                <th>ProviderEmail</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for provider in providers %}
-            <tr>
-                <td>{{ provider.id }}</td>
-                <td>{{ provider.providerName }}</td>
-                <td>{{ provider.providerNumber }}</td>
-                <td>{{ provider.providerEmail }}</td>
-                <td>{{ provider.createdAt ? provider.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_provider_show', {'id': provider.id}) }}">show</a>
-                    <a href="{{ path('app_provider_edit', {'id': provider.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des fournisseurs</h1>
 
-    <a href="{{ path('app_provider_new') }}">Create new</a>
+		{% for message in app.flashes("success") %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
+
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nom</th>
+					<th>Numéro de téléphone</th>
+					<th>Email</th>
+					<th>Date de création</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for provider in providers %}
+					<tr>
+						<td>{{ provider.id }}</td>
+						<td>{{ provider.providerName }}</td>
+						<td>{{ provider.providerNumber }}</td>
+						<td>{{ provider.providerEmail }}</td>
+						<td>{{ provider.createdAt ? provider.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a href="{{ path('app_provider_show', {'id': provider.id}) }}" class="btn btn-secondary">Voir</a>
+							<a href="{{ path('app_provider_edit', {'id': provider.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_provider_new') }}" class="btn btn-primary">Ajouter un nouveau fournisseur</a>
+
+	</div>
 {% endblock %}

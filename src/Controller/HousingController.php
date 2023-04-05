@@ -56,6 +56,7 @@ class HousingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $housingRepository->save($housing, true);
+            $this->addFlash("success", "Modification effectuée.");
 
             return $this->redirectToRoute('app_housing_index', [], Response::HTTP_SEE_OTHER);
         }

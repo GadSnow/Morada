@@ -56,6 +56,7 @@ class ProviderController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $providerRepository->save($provider, true);
+            $this->addFlash("success", "Modification effectuée.");
 
             return $this->redirectToRoute('app_provider_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -69,7 +70,7 @@ class ProviderController extends AbstractController
     #[Route('/{id}', name: 'app_provider_delete', methods: ['POST'])]
     public function delete(Request $request, Provider $provider, ProviderRepository $providerRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$provider->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $provider->getId(), $request->request->get('_token'))) {
             $providerRepository->remove($provider, true);
         }
 

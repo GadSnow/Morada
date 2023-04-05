@@ -1,41 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Client index{% endblock %}
+{% block title %}Gestion des clients
+{% endblock %}
 
 {% block body %}
-    <h1>Client index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>ClientName</th>
-                <th>ClientNumber</th>
-                <th>ClientEmail</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr>
-                <td>{{ client.id }}</td>
-                <td>{{ client.clientName }}</td>
-                <td>{{ client.clientNumber }}</td>
-                <td>{{ client.clientEmail }}</td>
-                <td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des clients</h1>
 
-    <a href="{{ path('app_client_new') }}">Create new</a>
+		{% for message in app.flashes("success") %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nom</th>
+					<th>Numéro de téléphone</th>
+					<th>Email</th>
+					<th>Date de création</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for client in clients %}
+					<tr>
+						<td>{{ client.id }}</td>
+						<td>{{ client.clientName }}</td>
+						<td>{{ client.clientNumber }}</td>
+						<td>{{ client.clientEmail }}</td>
+						<td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a href="{{ path('app_client_show', {'id': client.id}) }}" class="btn btn-secondary">Voir</a>
+							<a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_client_new') }}" class="btn btn-primary">Ajouter un nouveau client</a>
+	</div>
+
 {% endblock %}

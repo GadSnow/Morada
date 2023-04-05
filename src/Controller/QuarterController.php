@@ -56,6 +56,7 @@ class QuarterController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $quarterRepository->save($quarter, true);
+            $this->addFlash("success", "Modification effectuée.");
 
             return $this->redirectToRoute('app_quarter_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -69,7 +70,7 @@ class QuarterController extends AbstractController
     #[Route('/{id}', name: 'app_quarter_delete', methods: ['POST'])]
     public function delete(Request $request, Quarter $quarter, QuarterRepository $quarterRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$quarter->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $quarter->getId(), $request->request->get('_token'))) {
             $quarterRepository->remove($quarter, true);
         }
 

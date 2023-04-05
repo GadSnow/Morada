@@ -13,9 +13,7 @@ class QuarterType extends AbstractType
     {
         $builder
             ->add('quarterName')
-            ->add('createdAt')
-            ->add('city')
-        ;
+            ->add('city');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

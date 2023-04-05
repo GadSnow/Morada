@@ -14,15 +14,14 @@ class ProviderType extends AbstractType
         $builder
             ->add('providerName')
             ->add('providerNumber')
-            ->add('providerEmail')
-            ->add('createdAt')
-        ;
+            ->add('providerEmail');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Provider::class,
+            'translation_domain' => 'provider'
         ]);
     }
 }

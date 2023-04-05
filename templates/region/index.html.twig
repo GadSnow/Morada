@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Region index
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des regions</h1>
+
+		{% for message in app.flashes("success") %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nom</th>
+					<th>Date de création</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for region in regions %}
+					<tr>
+						<td>{{ region.id }}</td>
+						<td>{{ region.regionName }}</td>
+						<td>{{ region.createdAt ? region.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a href="{{ path('app_region_show', {'id': region.id}) }}" class="btn btn-secondary">Voir</a>
+							<a href="{{ path('app_region_edit', {'id': region.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_region_new') }}" class="btn btn-primary">Ajouter une nouvelle region</a>
+
+	</div>
+{% endblock %}

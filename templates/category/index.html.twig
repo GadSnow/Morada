@@ -6,7 +6,11 @@
 {% block body %}
 
 	<div class="container">
-		<h1>Gérer les catégories</h1>
+		<h1 class="fs-1 fw-bold">Gestion des catégories</h1>
+
+		{% for message in app.flashes("success") %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
 
 		<table class="table table-striped">
 			<thead>

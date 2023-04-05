@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}City index
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des villes</h1>
+
+		{% for message in app.flashes("success") %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
+
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nom</th>
+					<th>Date de création</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for city in cities %}
+					<tr>
+						<td>{{ city.id }}</td>
+						<td>{{ city.cityName }}</td>
+						<td>{{ city.createdAt ? city.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a href="{{ path('app_city_show', {'id': city.id}) }}" class="btn btn-secondary">Voir</a>
+							<a href="{{ path('app_city_edit', {'id': city.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_city_new') }}" class="btn btn-primary">Ajouter une nouvelle ville</a>
+
+	</div>
+{% endblock %}

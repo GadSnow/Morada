@@ -33,6 +33,7 @@ class Client
     public function __construct()
     {
         $this->housings = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

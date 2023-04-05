@@ -17,6 +17,7 @@ class HousingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('title')
             ->add('housingDescription')
             ->add('numberOfRooms')
             ->add('price')

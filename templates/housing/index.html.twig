@@ -1,45 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Housing index{% endblock %}
+{% block title %}Housing index
+{% endblock %}
 
 {% block body %}
-    <h1>Housing index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>HousingDescription</th>
-                <th>NumberOfRooms</th>
-                <th>Slug</th>
-                <th>Price</th>
-                <th>CreatedAt</th>
-                <th>Sold</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for housing in housings %}
-            <tr>
-                <td>{{ housing.id }}</td>
-                <td>{{ housing.housingDescription }}</td>
-                <td>{{ housing.numberOfRooms }}</td>
-                <td>{{ housing.slug }}</td>
-                <td>{{ housing.price }}</td>
-                <td>{{ housing.createdAt ? housing.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ housing.sold ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_housing_show', {'id': housing.id}) }}">show</a>
-                    <a href="{{ path('app_housing_edit', {'id': housing.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des appartements</h1>
 
-    <a href="{{ path('app_housing_new') }}">Create new</a>
+		{% for message in app.flashes("success") %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
+
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Description</th>
+					<th>Pièces</th>
+					<th>Prix</th>
+					<th>Date de création</th>
+					<th>Vendu</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for housing in housings %}
+					<tr>
+						<td>{{ housing.id }}</td>
+						<td>{{ housing.housingDescription }}</td>
+						<td>{{ housing.numberOfRooms }}</td>
+						<td>{{ housing.slug }}</td>
+						<td>{{ housing.price }}</td>
+						<td>{{ housing.createdAt ? housing.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ housing.sold ? 'Yes' : 'No' }}</td>
+						<td>
+							<a href="{{ path('app_housing_show', {'id': housing.id}) }}" class="btn btn-secondary">Voir</a>
+							<a href="{{ path('app_housing_edit', {'id': housing.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_housing_new') }}" class="btn btn-primary">Ajouter un nouvel appartement</a>
+	</div>
+
 {% endblock %}

@@ -1,37 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quarter index{% endblock %}
+{% block title %}Quarter index
+{% endblock %}
 
 {% block body %}
-    <h1>Quarter index</h1>
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des quartiers</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>QuarterName</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for quarter in quarters %}
-            <tr>
-                <td>{{ quarter.id }}</td>
-                <td>{{ quarter.quarterName }}</td>
-                <td>{{ quarter.createdAt ? quarter.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_quarter_show', {'id': quarter.id}) }}">show</a>
-                    <a href="{{ path('app_quarter_edit', {'id': quarter.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nom</th>
+					<th>Date de création</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for quarter in quarters %}
+					<tr>
+						<td>{{ quarter.id }}</td>
+						<td>{{ quarter.quarterName }}</td>
+						<td>{{ quarter.createdAt ? quarter.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a href="{{ path('app_quarter_show', {'id': quarter.id}) }}" class="btn btn-secondary">Voir</a>
+							<a href="{{ path('app_quarter_edit', {'id': quarter.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-    <a href="{{ path('app_quarter_new') }}">Create new</a>
+		<a href="{{ path('app_quarter_new') }}" class="btn btn-primary">Ajouter un nouveau quartier</a>
+
+	</div>
 {% endblock %}

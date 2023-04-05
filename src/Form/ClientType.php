@@ -14,15 +14,14 @@ class ClientType extends AbstractType
         $builder
             ->add('clientName')
             ->add('clientNumber')
-            ->add('clientEmail')
-            ->add('createdAt')
-        ;
+            ->add('clientEmail');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Client::class,
+            'translation_domain' => 'client'
         ]);
     }
 }
