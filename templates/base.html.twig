@@ -33,7 +33,7 @@
 				{% if app.user %}
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item text-end">
-							<a href="#" class="nav-link">Se déconnecter</a>
+							<a href="{{ path('app_logout')}}" class="nav-link">Se déconnecter</a>
 						</li>
 					</ul>
 				{% endif %}
