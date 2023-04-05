@@ -21,7 +21,7 @@
 					<th>Pièces</th>
 					<th>Prix</th>
 					<th>Date de création</th>
-					<th>Vendu</th>
+					<th>Loué</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -31,10 +31,9 @@
 						<td>{{ housing.id }}</td>
 						<td>{{ housing.housingDescription }}</td>
 						<td>{{ housing.numberOfRooms }}</td>
-						<td>{{ housing.slug }}</td>
 						<td>{{ housing.price }}</td>
 						<td>{{ housing.createdAt ? housing.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-						<td>{{ housing.sold ? 'Yes' : 'No' }}</td>
+						<td>{{ housing.sold ? 'Oui' : 'Non' }}</td>
 						<td>
 							<a href="{{ path('app_housing_show', {'id': housing.id}) }}" class="btn btn-secondary">Voir</a>
 							<a href="{{ path('app_housing_edit', {'id': housing.id}) }}" class="btn btn-primary">Modifier</a>
