@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Region
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des regions: Ajout</h1>
+
+		{{ include('admin_entities/region/_form.html.twig', { button_label: 'Enregistrer'}) }}
+
+		<a href="{{ path('app_region_index') }}" class="btn btn-secondary mt-3">Retour à la liste des regions</a>
+	</div>
+{% endblock %}

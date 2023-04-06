@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quarter
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Informations sur le quartier :
+			{{ quarter.quarterName }}</h1>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ quarter.id }}</td>
+				</tr>
+				<tr>
+					<th>QuarterName</th>
+					<td>{{ quarter.quarterName }}</td>
+				</tr>
+				<tr>
+					<th>CreatedAt</th>
+					<td>{{ quarter.createdAt ? quarter.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_quarter_index') }}" class="btn btn-secondary">Retour à la liste des quartiers</a>
+
+		<a href="{{ path('app_quarter_edit', {'id': quarter.id}) }}" class="btn btn-primary">Modifier</a>
+
+		{{ include('admin_entities/quarter/_delete_form.html.twig') }}
+
+	</div>
+{% endblock %}

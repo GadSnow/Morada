@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Client
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des clients: Modification</h1>
+
+		{{ include('admin_entities/client/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+		<a href="{{ path('app_client_index') }}" class="btn btn-secondary">Retour à la liste des clients</a>
+
+		{{ include('admin_entities/client/_delete_form.html.twig') }}
+	</div>
+{% endblock %}

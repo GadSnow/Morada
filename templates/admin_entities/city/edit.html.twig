@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit City
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des villes: Modification</h1>
+
+		{{ include('admin_entities/city/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+		<a href="{{ path('app_city_index') }}" class="btn btn-secondary">Retour à la liste des villes</a>
+
+		{{ include('admin_entities/city/_delete_form.html.twig') }}
+
+	</div>
+{% endblock %}

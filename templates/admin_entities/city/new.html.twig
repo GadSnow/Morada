@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New City
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des villes: Ajout</h1>
+
+		{{ include('admin_entities/city/_form.html.twig', { button_label: 'Enregistrer' }) }}
+
+		<a href="{{ path('app_city_index') }}" class="btn btn-secondary mt-3">Retour à la liste des villes</a>
+	</div>
+{% endblock %}

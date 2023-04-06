@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Housing
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Gestion des biens</h1>
+
+		{{ include('admin_entities/housing/_form.html.twig', { button_label: 'Enregistrer' }) }}
+
+		<a href="{{ path('app_housing_index') }}" class="btn btn-secondary mt-3">Retour à la liste des appartements</a>
+	</div>
+{% endblock %}
