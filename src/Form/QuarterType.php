@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\City;
 use App\Entity\Quarter;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,13 +15,17 @@ class QuarterType extends AbstractType
     {
         $builder
             ->add('quarterName')
-            ->add('city');
+            ->add('city', EntityType::class, [
+                'class' => City::class,
+                'choice_label' => 'cityName'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Quarter::class,
+            'translation_domain' => 'quarter'
         ]);
     }
 }

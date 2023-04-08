@@ -9,4 +9,28 @@
 		<h1 class="display-5 fw-bold">😎 Agence Morada Entreprise 🤩</h1>
 		<p class="fs-5 text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea soluta quam, vero delectus dignissimos facilis non quos laborum exercitationem officia necessitatibus optio, eveniet aut alias culpa, nihil eum consequatur! Beatae.</p>
 	</div>
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Les derniers biens</h1>
+		<div class="row">
+			{% for housing in housings %}
+				<div class="col-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">
+								<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}" class="fw-bold text-decoration-none">{{ housing.title }}</a>
+							</h5>
+							<p class="card-text">{{ housing.quarter.quarterName }}
+								-
+								{{ housing.bedrooms }}
+								chambres
+							</p>
+							<div class="text-primary fw-bold fs-3">{{ housing.formattedPrice }}
+								Fg</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+	</div>
 {% endblock %}

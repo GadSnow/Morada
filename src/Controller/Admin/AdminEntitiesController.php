@@ -19,7 +19,8 @@ class AdminEntitiesController extends AbstractController
             2 => ['app_city_index', 'Villes'],
             3 => ['app_client_index', 'Clients'],
             4 => ['app_provider_index', 'Fournisseurs'],
-            5 => ['app_region_index', 'Régions']
+            5 => ['app_region_index', 'Régions'],
+            6 => ['app_quarter_index', 'Quartiers']
         ];
         return $this->render('admin_entities/index.html.twig', [
             'controller_name' => 'AdminEntitiesController',

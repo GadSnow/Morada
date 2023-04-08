@@ -4,44 +4,51 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Housing</h1>
 
-	<table class="table table-striped">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ housing.id }}</td>
-			</tr>
-			<tr>
-				<th>HousingDescription</th>
-				<td>{{ housing.housingDescription }}</td>
-			</tr>
-			<tr>
-				<th>NumberOfRooms</th>
-				<td>{{ housing.numberOfRooms }}</td>
-			</tr>
-			<tr>
-				<th>Slug</th>
-				<td>{{ housing.slug }}</td>
-			</tr>
-			<tr>
-				<th>Price</th>
-				<td>{{ housing.price }}</td>
-			</tr>
-			<tr>
-				<th>CreatedAt</th>
-				<td>{{ housing.createdAt ? housing.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Sold</th>
-				<td>{{ housing.sold ? 'Yes' : 'No' }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Informations sur  l'appartement:
+			{{ housing.title }}</h1>
 
-	<a href="{{ path('app_housing_index') }}">back to list</a>
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ housing.id }}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ housing.housingDescription }}</td>
+				</tr>
+				<tr>
+					<th>Pièces</th>
+					<td>{{ housing.numberOfRooms }}</td>
+				</tr>
+				<tr>
+					<th>Chambres</th>
+					<td>{{ housing.bedrooms }}</td>
+				</tr>
+				<tr>
+					<th>Prix</th>
+					<td>{{ housing.formattedPrice }}
+						Fg</td>
+				</tr>
+				<tr>
+					<th>Date de création</th>
+					<td>{{ housing.createdAt ? housing.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Vendu</th>
+					<td>{{ housing.sold ? 'Oui' : 'Non' }}</td>
+				</tr>
+			</tbody>
+		</table>
 
-	<a href="{{ path('app_housing_edit', {'id': housing.id}) }}">edit</a>
+		<a href="{{ path('app_housing_index') }}" class="btn btn-secondary">Retour à la liste des appartements</a>
 
-	{{ include('admin_entities/housing/_delete_form.html.twig') }}
+		<a href="{{ path('app_housing_edit', {'id': housing.id}) }}" class="btn btn-primary">Modifier</a>
+
+		{{ include('admin_entities/housing/_delete_form.html.twig') }}
+
+
+	</div>
 {% endblock %}

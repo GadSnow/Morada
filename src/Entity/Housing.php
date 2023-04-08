@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\HousingRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -188,5 +189,15 @@ class Housing
         $this->title = $title;
 
         return $this;
+    }
+
+    public function getSlug()
+    {
+        return (new Slugify())->slugify($this->title);
+    }
+
+    public function getFormattedPrice(): string
+    {
+        return number_format($this->price, 0, '', ' ');
     }
 }

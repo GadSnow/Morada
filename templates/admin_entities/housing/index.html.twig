@@ -17,7 +17,7 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Description</th>
+					<th>Titre</th>
 					<th>Pièces</th>
 					<th>Prix</th>
 					<th>Date de création</th>
@@ -29,9 +29,10 @@
 				{% for housing in housings %}
 					<tr>
 						<td>{{ housing.id }}</td>
-						<td>{{ housing.housingDescription }}</td>
+						<td>{{ housing.title }}</td>
 						<td>{{ housing.numberOfRooms }}</td>
-						<td>{{ housing.price }}</td>
+						<td>{{ housing.formattedPrice }}
+							Fg</td>
 						<td>{{ housing.createdAt ? housing.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 						<td>{{ housing.sold ? 'Oui' : 'Non' }}</td>
 						<td>

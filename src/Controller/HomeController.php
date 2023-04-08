@@ -15,6 +15,7 @@ class HomeController extends AbstractController
         $housings = $housingRepository->findLatest();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'housings' => $housings
         ]);
     }
 }
