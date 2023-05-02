@@ -1,53 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ViewHousingController!
-{% endblock %}
 
 {% block body %}
-	<div class="p-5 mb-4 bg-light rounded-3">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8"></div>
-				<div class="col-md-4">
-					<h1>{{ housing.title }}</h1>
-					<h2>{{ housing.numberOfRooms }}
-						pièces
-					</h2>
-					<div class="text-primary fs-1 fw-bold">{{ housing.formattedPrice }}
-						€</div>
-					<a href="#" class="btn btn-primary">Contacter l'agence</a>
-				</div>
-			</div>
-		</div>
+	<div class="p-5 mb-4 bg-light rounded-3 d-flex flex-column align-items-center">
+		<p class="fs-5 text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea soluta quam, vero delectus dignissimos facilis non quos laborum exercitationem officia necessitatibus optio, eveniet aut alias culpa, nihil eum consequatur! Beatae.</p>
 	</div>
 
+	<div class="container">
+		<h1 class="fs-1 fw-bold">Tous nos biens</h1>
 
-	<div class="container mt-4">
-		<p>
-			{{ housing.housingDescription | nl2br }}
-		</p>
 		<div class="row">
-			<div class="col-md-8">
-				<h2>Caractéristiques</h2>
-				<table class="table table-striped">
-					<tr>
-						<td>Pièces</td>
-						<td>{{ housing.numberOfRooms }}</td>
-					</tr>
-					<tr>
-						<td>Chambres</td>
-						<td>{{ housing.bedrooms }}</td>
-					</tr>
-					<tr>
-						<td>Prix</td>
-						<td>{{ housing.formattedPrice }}
-							Fg</td>
-					</tr>
-				</table>
-			</div>
-			<div class="col-md-4">
-				<h2>Spécificités</h2>
-			</div>
+			{% for housing in housings %}
+				<div class="col-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">
+								<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}" class="fw-bold text-decoration-none">{{ housing.title }}</a>
+							</h5>
+							<p class="card-text">{{ housing.quarter.quarterName }}
+								-
+								{{ housing.bedrooms }}
+								chambres
+							</p>
+							<div class="text-primary fw-bold fs-3">{{ housing.formattedPrice }}
+								Fg</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 		</div>
+
 	</div>
 {% endblock %}

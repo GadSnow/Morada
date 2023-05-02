@@ -39,10 +39,23 @@ class HousingRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLatest()
+    public function findVisibleQuery()
     {
         return $this->createQueryBuilder('h')
-            ->where('h.sold = false')
+            ->where('h.sold = false');
+    }
+
+    public function findLatest()
+    {
+        return $this->findVisibleQuery()
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllVisibleItems()
+    {
+        return $this->findVisibleQuery()
             ->getQuery()
             ->getResult();
     }

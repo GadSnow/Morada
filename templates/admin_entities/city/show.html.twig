@@ -6,7 +6,7 @@
 {% block body %}
 
 	<div class="container">
-		<h1>Informations sur la ville
+		<h1 class="fs-1 fw-bold">Informations sur la ville
 			{{ city.cityName }}</h1>
 
 		<table class="table table-striped">
@@ -16,11 +16,11 @@
 					<td>{{ city.id }}</td>
 				</tr>
 				<tr>
-					<th>CityName</th>
+					<th>Nom</th>
 					<td>{{ city.cityName }}</td>
 				</tr>
 				<tr>
-					<th>CreatedAt</th>
+					<th>Date de création</th>
 					<td>{{ city.createdAt ? city.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 				</tr>
 			</tbody>

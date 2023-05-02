@@ -15,12 +15,7 @@ class CityFixtures extends Fixture
         $faker = Factory::create();
         $region = new Region();
 
-        for ($i = 0; $i < 5; $i++) {
-            $city = new City();
-            $city
-            ->setCityName($faker->words(3, true))
-            ->setRegion($region->get);
-        }
+
         // $product = new Product();
         // $manager->persist($product);
 

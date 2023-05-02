@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ViewHousingController!
+{% endblock %}
+
+{% block body %}
+	<div class="p-5 mb-4 bg-light rounded-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<h1>{{ housing.title }}</h1>
+					<h2>{{ housing.numberOfRooms }}
+						pièces
+					</h2>
+					<div class="text-primary fs-1 fw-bold">{{ housing.formattedPrice }}
+						€</div>
+					<a href="#" class="btn btn-primary">Contacter l'agence</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container mt-4">
+		<p>
+			{{ housing.housingDescription | nl2br }}
+		</p>
+		<div class="row">
+			<div class="col-md-8">
+				<h2>Caractéristiques</h2>
+				<table class="table table-striped">
+					<tr>
+						<td>Pièces</td>
+						<td>{{ housing.numberOfRooms }}</td>
+					</tr>
+					<tr>
+						<td>Chambres</td>
+						<td>{{ housing.bedrooms }}</td>
+					</tr>
+					<tr>
+						<td>Prix</td>
+						<td>{{ housing.formattedPrice }}
+							Fg</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<h2>Spécificités</h2>
+			</div>
+		</div>
+	</div>
+{% endblock %}

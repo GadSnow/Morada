@@ -13,8 +13,6 @@
 		{% block stylesheets %}
 			<link rel="stylesheet" href="{{ asset('build/app.css') }}">
 		{% endblock %}
-
-
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
@@ -26,7 +24,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link " href="#">Acheter</a>
+							<a class="nav-link " href="{{ path('app_index_housings')}}">Acheter</a>
 						</li>
 					</ul>
 				</div>
