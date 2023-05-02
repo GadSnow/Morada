@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Region;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,7 +13,10 @@ class RegionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('regionName');
+            ->add('regionName')
+            ->add('imageFile', FileType::class, [
+                'required' =>  false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

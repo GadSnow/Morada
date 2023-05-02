@@ -9,6 +9,7 @@ use App\Entity\Provider;
 use App\Entity\Quarter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,6 +24,9 @@ class HousingType extends AbstractType
             ->add('price')
             ->add('sold')
             ->add('bedrooms')
+            ->add('imageFile', FileType::class, [
+                'required' => false
+            ])
             ->add('client', EntityType::class, [
                 'class' => Client::class,
                 'choice_label' => 'clientName'

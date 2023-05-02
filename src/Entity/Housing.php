@@ -4,10 +4,15 @@ namespace App\Entity;
 
 use App\Repository\HousingRepository;
 use Cocur\Slugify\Slugify;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: HousingRepository::class)]
+#[Vich\Uploadable]
 class Housing
 {
     #[ORM\Id]
@@ -20,7 +25,6 @@ class Housing
 
     #[ORM\Column]
     private ?int $numberOfRooms = null;
-
 
     #[ORM\Column]
     private ?int $price = null;
@@ -38,7 +42,7 @@ class Housing
     private ?Quarter $quarter = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
     private ?bool $sold = null;
@@ -49,9 +53,19 @@ class Housing
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[Vich\UploadableField(mapping: 'housings_image', fileNameProperty: 'filename')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $filename = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+
+
     public function __construct()
     {
-        $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -199,5 +213,63 @@ class Housing
     public function getFormattedPrice(): string
     {
         return number_format($this->price, 0, '', ' ');
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile 
+     * @return self
+     */
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile instanceof UploadedFile) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param string|null $filename 
+     * @return self
+     */
+    public function setFilename(?string $filename): self
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTimeImmutable|null $updatedAt 
+     * @return self
+     */
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
     }
 }

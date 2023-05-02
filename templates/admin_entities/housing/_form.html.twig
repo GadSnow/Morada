@@ -10,6 +10,11 @@
 	<div class="col">{{ form_row(form.provider) }}</div>
 	<div class="col">{{ form_row(form.client) }}</div>
 </div>
+<div class="row">
+	<div class="col">{{ form_row(form.quarter) }}</div>
+	<div class="col">{{ form_row(form.imageFile) }}</div>
+	<div class="col">{{ form_row(form.sold) }}</div>
+</div>
 
 {{ form_rest(form) }}
 <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
