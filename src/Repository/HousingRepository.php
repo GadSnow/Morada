@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Housing;
+use App\Entity\HousingSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -58,6 +59,19 @@ class HousingRepository extends ServiceEntityRepository
         return $this->findVisibleQuery()
             ->getQuery()
             ->getResult();
+    }
+
+    public function findBySearch(HousingSearch $search)
+    {
+        $query = $this->findVisibleQuery();
+
+        if ($search->getCity()) {
+            $query = $query
+                ->andWhere('h.city LIKE "%:city%"')
+                ->setParameter('city', $search->getCity());
+        }
+
+        return $query;
     }
 
     //    /**

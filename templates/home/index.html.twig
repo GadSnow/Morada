@@ -6,11 +6,27 @@
 
 {% block body %}
 	<div class="p-5 mb-4 bg-light rounded-3 d-flex flex-column align-items-center">
-		<h1 class="display-5 fw-bold">😎 Agence Morada Entreprise 🤩</h1>
-		<p class="fs-5 text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea soluta quam, vero delectus dignissimos facilis non quos laborum exercitationem officia necessitatibus optio, eveniet aut alias culpa, nihil eum consequatur! Beatae.</p>
+		<h2>
+			Location appartement :
+		</h2>
+		<h2>
+
+			trouvez un appartement à louer
+		</h2>
+		<p class="fs-5 text-center">Commencez votre recherche !</p>
+		{{ form_start(form) }}
+		<div class="row">
+			<div>{{ form_row(form.city) }}</div>
+		</div>
+		<div class="row">
+			<div class="col">{{ form_row(form.rooms) }}</div>
+			<div class="col">{{ form_row(form.maxPrice) }}</div>
+		</div>
+		<button class="btn btn-primary col" type="submit">Voir les appartements</button>
+		{{ form_end(form) }}
 	</div>
 	<div class="container">
-		<h1 class="fs-1 fw-bold">Les derniers biens</h1>
+		<h1 class="fs-1 fw-bold">Nos hébergements</h1>
 		<div class="row">
 			{% for housing in housings %}
 				<div class="col-3">
@@ -31,6 +47,6 @@
 				</div>
 			{% endfor %}
 		</div>
-
+		<h1 class="fs-1 fw-bold">Lieux</h1>
 	</div>
 {% endblock %}
