@@ -6,6 +6,7 @@ use App\Entity\Housing;
 use App\Entity\HousingSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Proxies\__CG__\App\Entity\Quarter;
 
 /**
  * @extends ServiceEntityRepository<Housing>
@@ -48,7 +49,7 @@ class HousingRepository extends ServiceEntityRepository
 
     public function findLatest()
     {
-        return $this->findVisibleQuery()
+        return $this->createQueryBuilder('h')
             ->setMaxResults(4)
             ->getQuery()
             ->getResult();

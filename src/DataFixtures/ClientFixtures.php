@@ -2,22 +2,24 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Region;
+use App\Entity\Client;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class RegionFixtures extends Fixture
+class ClientFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
 
         for ($i = 0; $i < 5; $i++) {
-            $region = new Region();
-            $region->setRegionName($faker->words(3, true));
-            $this->addReference("region$i", $region);
-            $manager->persist($region);
+            $client = new Client();
+            $client->setClientName($faker->name());
+            $client->setClientNumber($faker->phoneNumber());
+            $client->setClientEmail($faker->email());
+            $this->addReference("client$i", $client);
+            $manager->persist($client);
         }
         $manager->flush();
         // $product = new Product();

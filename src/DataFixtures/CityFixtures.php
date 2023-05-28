@@ -13,12 +13,20 @@ class CityFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        $region = new Region();
+
+        for ($i = 0; $i < 5; $i++) {
+            $city = new City();
+            $city->setCityName($faker->city());
+            $city->setRegion($this->getReference("region$i"));
+            $this->addReference("city$i", $city);
+            $manager->persist($city);
+        }
+
+        $manager->flush();
 
 
         // $product = new Product();
         // $manager->persist($product);
 
-        $manager->flush();
     }
 }
