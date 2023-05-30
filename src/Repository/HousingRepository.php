@@ -6,7 +6,6 @@ use App\Entity\Housing;
 use App\Entity\HousingSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Proxies\__CG__\App\Entity\Quarter;
 
 /**
  * @extends ServiceEntityRepository<Housing>
@@ -66,13 +65,15 @@ class HousingRepository extends ServiceEntityRepository
     {
         $query = $this->findVisibleQuery();
 
-        if ($search->getCity()) {
+        if ($search->getMaxPrice()) {
             $query = $query
-                ->andWhere('h.city LIKE "%:city%"')
-                ->setParameter('city', $search->getCity());
+                ->andWhere('h.price = :maxPrice')
+                ->setParameter('maxPrice', $search->getMaxPrice());
         }
 
-        return $query;
+        dd($query->getQuery());
+
+        return $query->getQuery()->getResult();
     }
 
     //    /**

@@ -8,11 +8,10 @@
 
 	<div class="container">
 		<h1 class="fs-1 fw-bold">Tous nos biens</h1>
-
 		<div class="row">
 			{% for housing in housings %}
 				<div class="col-3">
-					<div class="card">
+					<div class="card mt-4">
 						<div class="card-body">
 							<h5 class="card-title">
 								<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}" class="fw-bold text-decoration-none">{{ housing.title }}</a>

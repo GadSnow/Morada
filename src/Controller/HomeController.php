@@ -21,14 +21,17 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('app_index_housings');
+            $housings = $housingRepository->findBySearch($housingSearch);
+            return $this->render('view_housing/index.html.twig', [
+                'housings' => $housings,
+                'housingSearch' => $housingSearch
+            ]);
         }
         $housings = $housingRepository->findLatest();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'housings' => $housings,
-            'form' => $form->createView(),
-            'request' => $request->request
+            'form' => $form->createView()
         ]);
     }
 }

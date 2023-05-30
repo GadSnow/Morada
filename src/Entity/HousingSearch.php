@@ -8,9 +8,9 @@ class HousingSearch
 
 	private ?string $city;
 
-	private ?int $maxPrice;
+	private ?int $maxPrice = null;
 
-	private ?int $rooms;
+	private ?int $rooms = null;
 
 
 	/**

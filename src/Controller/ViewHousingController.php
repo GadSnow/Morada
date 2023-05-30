@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Housing;
+use App\Entity\HousingSearch;
 use App\Repository\HousingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,9 @@ class ViewHousingController extends AbstractController
     #[Route('/biens', name: 'app_index_housings')]
     public function index(HousingRepository $housingRepository)
     {
-        $housings = $housingRepository->findAllVisibleItems();
+        $search = new HousingSearch();
+
+        $housings = $housingRepository->findBySearch($search);
 
         return $this->render('view_housing/index.html.twig', [
             'housings' => $housings

@@ -1,3 +1,15 @@
-.title {
-    margin-top: 15px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: #fff;
+}
+
+.navbar__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

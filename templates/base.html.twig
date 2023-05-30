@@ -15,26 +15,15 @@
 		{% endblock %}
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="{{ path('app_home')}}">Morada</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_home')}}">Accueil</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_index_housings')}}">Louer</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link">A propos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link">Contact</a>
-						</li>
+		<nav class="navbar">
+			<div class="navbar__content">
+				<a href="{{ path('app_home')}}">Morada</a>
+				<div>
+					<ul>
+						<li><a class=""href="{{path('app_home')}} "></a></li>
+						<li><a class=""href="{{path('app_index_housings')}}">Louer</a></li>
+						<li><a>A propos</a></li>
+						<li><a>Contact</a></li>
 					</ul>
 				</div>
 				{% if app.user %}
