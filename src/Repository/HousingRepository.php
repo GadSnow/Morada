@@ -2,9 +2,14 @@
 
 namespace App\Repository;
 
+use App\Entity\City;
 use App\Entity\Housing;
 use App\Entity\HousingSearch;
+use App\Entity\Quarter;
+use App\Entity\Region;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\FetchMode;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -63,15 +68,28 @@ class HousingRepository extends ServiceEntityRepository
 
     public function findBySearch(HousingSearch $search)
     {
-        $query = $this->findVisibleQuery();
+        $query = $this->findVisibleQuery()
+            ->leftJoin('App\Entity\Quarter', 'q', Join::WITH, "q.id = h.quarter")
+            ->leftJoin('App\Entity\City', 'c', Join::WITH, "c.id = q.city")
+            ->leftJoin('App\Entity\Region', 'r', Join::WITH, "r.id = c.region");
 
         if ($search->getMaxPrice()) {
             $query = $query
-                ->andWhere('h.price = :maxPrice')
-                ->setParameter('maxPrice', $search->getMaxPrice());
+                ->andWhere('h.price <= :price')
+                ->setParameter(':price', $search->getMaxPrice());
         }
 
-        dd($query->getQuery());
+        if ($search->getCity()) {
+            $query = $query
+                ->andWhere("q.quarterName = :place OR r.regionName = :place OR c.cityName = :place")
+                ->setParameter(':place', $search->getCity());
+        }
+
+        if ($search->getRooms()) {
+            $query = $query
+                ->andWhere('h.numberOfRooms = :rooms')
+                ->setParameter(':rooms', $search->getRooms());
+        }
 
         return $query->getQuery()->getResult();
     }

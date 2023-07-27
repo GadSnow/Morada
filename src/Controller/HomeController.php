@@ -22,6 +22,7 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $housings = $housingRepository->findBySearch($housingSearch);
+
             return $this->render('view_housing/index.html.twig', [
                 'housings' => $housings,
                 'housingSearch' => $housingSearch

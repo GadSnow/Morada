@@ -4,12 +4,129 @@
     box-sizing: border-box;
 }
 
+.app_container {
+    padding-left: calc(50vw - 570px);
+    padding-right: calc(50vw - 570px);
+    overflow-x: hidden;
+}
+
+
+/* ----------------------- NAVBAR ----------------------------- */
+
 .navbar {
-    background-color: #fff;
+    background-color: white;
+    height: 60px;
+    width: 100vw;
+    box-shadow: 0px 1.5px .5px rgba(0, 0, 0, .2);
+    transition: .2s;
 }
 
 .navbar__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100vw;
+}
+
+.morada__brand {
+    font-size: 30px;
+}
+
+.nav__items {
+    margin-right: 100px;
+}
+
+.nav__items li {
+    font-size: 20px;
+}
+
+.nav__items li a {
+    color: #000;
+}
+
+.navbar__content li {
+    list-style: none;
+}
+
+.navbar__content a {
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.nav__items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin_nav {
+    display: flex;
+}
+
+.burger__menu {
+    display: none;
+}
+
+[class*="burger__piece"] {
+    border: solid 1.5px black;
+    width: 30px;
+    display: block;
+    margin-top: 8px;
+}
+
+
+/* ----------------------- MEDIA QUERIES ----------------------------- */
+
+@media screen and (max-width: 992px) {
+    .navbar__visible {
+        height: 100vh;
+    }
+    .navbar__content {
+        position: relative;
+        width: 100vw;
+    }
+    .nav__items {
+        display: none;
+    }
+    .nav__items__visible {
+        display: block;
+        flex-direction: column;
+        height: 70vh;
+    }
+    .nav__items {
+        margin: 0;
+    }
+    .nav__items li {
+        font-size: 30px;
+        margin-bottom: 45px;
+    }
+    .burger__menu {
+        display: block;
+        padding: 5px;
+        font-size: 30px;
+        margin-right: 20px;
+        cursor: pointer;
+        transition: .2s;
+    }
+    .rotate {
+        transform: rotate(180deg) scale(.8);
+        position: absolute;
+        top: 20px;
+        right: 0;
+        display: block;
+    }
+    .cross1 {
+        transform: rotate(45deg) translate(5px, 8px);
+    }
+    .cross2 {
+        display: none;
+    }
+    .cross3 {
+        transform: rotate(-45deg);
+    }
+    .navbar__content__visible {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100vh;
+    }
 }

@@ -7,7 +7,13 @@
 	<div class="p-5 mb-4 bg-light rounded-3">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8"></div>
+				<div class="col-md-7">
+					{% if housing.filename %}
+						<img src="{{ vich_uploader_asset(housing, 'imageFile')}}" alt="Image" style="width: 100%; height: 450px;">
+					{% else %}
+						<img src="/images/housings/empty.jpg" alt="Image" style="width: 100%; height: 450px;">
+					{% endif %}
+				</div>
 				<div class="col-md-4">
 					<h1>{{ housing.title }}</h1>
 					<h2>{{ housing.numberOfRooms }}

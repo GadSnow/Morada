@@ -10,8 +10,13 @@
 		<h1 class="fs-1 fw-bold">Tous nos biens</h1>
 		<div class="row">
 			{% for housing in housings %}
-				<div class="col-3">
+				<div class="col-md-3">
 					<div class="card mt-4">
+						{% if housing.filename  %}
+							<img src="{{ vich_uploader_asset(housing, 'imageFile') }}" alt="Image">
+						{% else %}
+							<img src="/images/housings/empty.jpg" alt="Image">
+						{% endif %}
 						<div class="card-body">
 							<h5 class="card-title">
 								<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}" class="fw-bold text-decoration-none">{{ housing.title }}</a>

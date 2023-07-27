@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -21,6 +22,29 @@ Encore
  * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
  */
 .addEntry('app', './assets/app.js')
+
+
+.addPlugin(new BrowserSyncPlugin({
+    host: "localhost",
+    port: 3000,
+    proxy: process.env.PROXY,
+    files: [{
+            match: ["src/*.php"],
+        },
+        {
+            match: ["templates/*.twig"],
+        },
+        {
+            match: ["assets/*.js"],
+        },
+        {
+            match: ["assets/*.css"],
+        },
+    ],
+    notify: false
+}, {
+    reload: true
+}))
 
 // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
 .enableStimulusBridge('./assets/controllers.json')

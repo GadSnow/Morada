@@ -6,7 +6,7 @@ namespace App\Entity;
 class HousingSearch
 {
 
-	private ?string $city;
+	private ?string $city = null;
 
 	private ?int $maxPrice = null;
 

@@ -13,13 +13,13 @@ class HousingSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('city', null, [
-            //     'required' => false,
-            //     'label' => false,
-            //     'attr' => [
-            //         'placeholder' => 'Ville'
-            //     ]
-            // ])
+            ->add('city', null, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Ville, quartier, region'
+                ]
+            ])
             ->add('maxPrice', IntegerType::class, [
                 'required' => false,
                 'label' => false,
@@ -40,7 +40,7 @@ class HousingSearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => HousingSearch::class,
-            'method' => "POST",
+            'method' => "GET",
             'csrf_protection' => false
         ]);
     }
