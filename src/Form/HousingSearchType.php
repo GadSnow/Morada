@@ -31,7 +31,7 @@ class HousingSearchType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Nombre de pièces'
+                    'placeholder' => 'Pièces'
                 ]
             ]);
     }

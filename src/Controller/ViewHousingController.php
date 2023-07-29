@@ -5,18 +5,22 @@ namespace App\Controller;
 use App\Entity\Housing;
 use App\Entity\HousingSearch;
 use App\Repository\HousingRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ViewHousingController extends AbstractController
 {
     #[Route('/biens', name: 'app_index_housings')]
-    public function index(HousingRepository $housingRepository)
+    public function index(HousingRepository $housingRepository, PaginatorInterface $paginator, Request $request)
     {
-        $search = new HousingSearch();
-
-        $housings = $housingRepository->findBySearch($search);
+        $housings = $paginator->paginate(
+            $housingRepository->findAllVisibleItemsQuery(),
+            $request->query->getInt('page', 1),
+            12
+        );
 
         return $this->render('view_housing/index.html.twig', [
             'housings' => $housings

@@ -53,20 +53,19 @@ class HousingRepository extends ServiceEntityRepository
 
     public function findLatest()
     {
-        return $this->createQueryBuilder('h')
+        return $this->findVisibleQuery()
             ->setMaxResults(4)
             ->getQuery()
             ->getResult();
     }
 
-    public function findAllVisibleItems()
+    public function findAllVisibleItemsQuery()
     {
         return $this->findVisibleQuery()
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
     }
 
-    public function findBySearch(HousingSearch $search)
+    public function findBySearchQuery(HousingSearch $search)
     {
         $query = $this->findVisibleQuery()
             ->leftJoin('App\Entity\Quarter', 'q', Join::WITH, "q.id = h.quarter")
@@ -91,7 +90,7 @@ class HousingRepository extends ServiceEntityRepository
                 ->setParameter(':rooms', $search->getRooms());
         }
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery();
     }
 
     //    /**
