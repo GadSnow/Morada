@@ -5,7 +5,7 @@
 
 
 {% block body %}
-	<div class="p-5 mb-4 bg-light rounded-3 d-flex flex-column align-items-center">
+	<div class="banner">
 		<h1>
 			Demain commence ici
 		</h1>
@@ -25,32 +25,32 @@
 			<div class="col">{{ form_row(form.maxPrice) }}</div>
 		</div>
 		<div class="row d-flex justify-content-center">
-			<button class="btn btn-primary" type="submit" style="width: 250px;">Voir les appartements</button>
+			<button class="btn search__button" type="submit" style="width: 250px;">Voir les appartements</button>
 		</div>
 		{{ form_end(form) }}
 
 	</div>
 	<div class="container">
-		<h1 class="fs-1 fw-bold">Nos hébergements</h1>
+		<h1 class="fs-1 fw-bold text-center mb-4">Nos hébergements</h1>
 		<div class="row">
 			{% for housing in housings %}
-				<div class="col-3">
-					<div class="card">
+				<div class="col-md-3">
+					<div class="text-center">
 						{% if housing.filename  %}
-							<img src="{{ vich_uploader_asset(housing, 'imageFile') }}" alt="Image">
+							<img src="{{ vich_uploader_asset(housing, 'imageFile') }}" alt="Image" style="width: 300px; heigth: 240px">
 						{% else %}
-							<img src="/images/housings/empty.jpg" alt="Image">
+							<img src="/images/housings/empty.jpg" alt="Image" style="width: 300px; height: 240px">
 						{% endif %}
-						<div class="card-body">
-							<h5 class="card-title">
+						<div class="card-body text-center">
+							<h5 class="housing__title card-title">
 								<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}" class="fw-bold text-decoration-none">{{ housing.title }}</a>
 							</h5>
-							<p class="card-text">{{housing.quarter.quarterName}}
+							<p style="margin-bottom: 0px;">{{housing.quarter.quarterName}}
 								-
 								{{ housing.bedrooms }}
 								chambres
 							</p>
-							<div class="text-primary fw-bold fs-3">{{ housing.formattedPrice }}
+							<div class="fw-bold fs-3 mb-4">{{ housing.formattedPrice }}
 								Fg</div>
 						</div>
 					</div>

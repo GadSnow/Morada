@@ -1,3 +1,7 @@
+:root {
+    --main-color: #4A6FA5;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -14,10 +18,10 @@
 /* ----------------------- NAVBAR ----------------------------- */
 
 .navbar {
-    background-color: white;
+    background-color: var(--main-color);
     height: 60px;
     width: 100vw;
-    box-shadow: 0px 1.5px .5px rgba(0, 0, 0, .2);
+    /* box-shadow: 0px 1.5px .5px rgba(0, 0, 0, .2); */
     transition: .2s;
 }
 
@@ -28,8 +32,9 @@
     width: 100vw;
 }
 
-.morada__brand {
+.morada__brand a {
     font-size: 30px;
+    color: var(--main-color);
 }
 
 .nav__items {
@@ -40,8 +45,41 @@
     font-size: 20px;
 }
 
-.nav__items li a {
-    color: #000;
+.nav__link {
+    color: #FFF;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav__link {
+    position: relative;
+}
+
+.nav__link:hover {
+    color: white;
+}
+
+.nav__link::after {
+    content: '';
+    width: 10px;
+    bottom: 0;
+    height: 4px;
+    position: absolute;
+    display: block;
+    background-color: white;
+    transition: .5s;
+    opacity: 0;
+}
+
+.nav__link:hover::after {
+    bottom: 0;
+    opacity: 1;
+    width: 100%;
+}
+
+.nav__link {
+    margin-right: 15px;
+    padding-bottom: 5px;
 }
 
 .navbar__content li {
@@ -50,7 +88,6 @@
 
 .navbar__content a {
     text-decoration: none;
-    margin-right: 15px;
 }
 
 .nav__items {
@@ -72,6 +109,50 @@
     width: 30px;
     display: block;
     margin-top: 8px;
+}
+
+
+/* ---------------------- Banner  ----------------------------- */
+
+.banner {
+    min-height: 80vh;
+    /* background: url('../images/banner_image.jpeg') center center / cover no-repeat; */
+    background-color: #4A6FA5;
+    padding: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.search__button {
+    background-color: #C0D6DF;
+    color: black;
+}
+
+.search__button:hover {
+    background-color: #DBE9EE;
+    color: black;
+}
+
+.housing__title {
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.footer {
+    height: auto;
+    background-color: var(--main-color);
+    color: white;
+    padding: 15px 0;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 
@@ -128,5 +209,9 @@
         flex-direction: column;
         justify-content: space-around;
         height: 100vh;
+    }
+    .footer__container {
+        flex-direction: column;
+        text-align: center;
     }
 }

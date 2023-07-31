@@ -10,6 +10,7 @@
 		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 		{% block stylesheets %}
 			{{- encore_entry_link_tags('app') }}
 		{% endblock %}
@@ -20,20 +21,21 @@
 				<div>
 					<ul>
 						<li class="morada__brand">
-							<a href="{{ path('app_home')}}">Morada</a>
+
+							<a href="{{ path('app_home')}}"><img src="images/logoM.png" style="width: 130px; heigth: 100px;" alt=""></a>
 						</li>
 					</ul>
 				</div>
 				<div>
 					<ul class="nav__items">
 						<li>
-							<a class="" href="{{path('app_index_housings')}}">Louer</a>
+							<a class="nav__link" href="{{path('app_index_housings')}}">Louer</a>
 						</li>
 						<li>
-							<a class="" href="">A propos</a>
+							<a class="nav__link" href="">A propos</a>
 						</li>
 						<li>
-							<a class="" href="">Contact</a>
+							<a class="nav__link" href="">Contact</a>
 						</li>
 						{% if app.user %}
 							<div class="admin_nav">
@@ -59,27 +61,41 @@
 		<div>
 			{% block body %}{% endblock %}
 		</div>
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="about__us">
+					<h4 class="text-uppercase fw-bold">Morada</h4>
+					<p style="width: 200px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, eaque illum. Rem quos, fuga reiciendis officia atque</p>
+				</div>
+				<div class="contact">
+					<h4 class="text-uppercase fw-bold">Contact info</h4>
+					<p>
+						<div>
+							<img src="images/icons/map-locator.png" alt="">
+							1234 dubreka, Toumanya
+						</div>
+						<div>
+							<img src="images/icons/phone.png" alt="">
+							+224 66874587
+						</div>
+						<div>
+							<img src="images/icons/email.png" alt="">
+							contact@gmail.com
+						</div>
+					</p>
+					<div class="social">
+						<a href="#"><img src="images/icons/facebook(1).png" alt=""></a>
+						<a href="#"><img src="images/icons/whatsapp(1).png" alt=""></a>
+						<a href="#"><img src="images/icons/instagram(1).png" alt=""></a>
+					</div>
 
+				</div>
+			</div>
+			<p class="text-center" style="margin-bottom: 0px;">Copyrigth. Tous droits réservés.</p>
+		</footer>
+		<script></script>
 		{% block javascripts %}
 			{{- encore_entry_script_tags('app') }}
 		{% endblock %}
-		<script id="__bs_script__">//<![CDATA[
-																																																																																																																																											  (function() {
-																																																																																																																																											    try {
-																																																																																																																																											      var script = document.createElement('script');
-																																																																																																																																											      if ('async') {
-																																																																																																																																											        script.async = true;
-																																																																																																																																											      }
-																																																																																																																																											      script.src = 'http://HOST:3000/browser-sync/browser-sync-client.js?v=2.29.3'.replace("HOST", location.hostname);
-																																																																																																																																											      if (document.body) {
-																																																																																																																																											        document.body.appendChild(script);
-																																																																																																																																											      } else if (document.head) {
-																																																																																																																																											        document.head.appendChild(script);
-																																																																																																																																											      }
-																																																																																																																																											    } catch (e) {
-																																																																																																																																											      console.error("Browsersync: could not append script tag", e);
-																																																																																																																																											    }
-																																																																																																																																											  })()
-																																																																																																																																											//]]></script>
-																																																																																																																																												</body>
-																																																																																																																																											</html>
+	</body>
+</html>
