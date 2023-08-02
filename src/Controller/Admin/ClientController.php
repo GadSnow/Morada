@@ -41,16 +41,18 @@ class ClientController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_client_show', methods: ['GET'])]
-    public function show(Client $client): Response
+    public function show(ClientRepository $clientRepository, $id): Response
     {
+        $client = $clientRepository->find($id);
         return $this->render('admin_entities/client/show.html.twig', [
             'client' => $client,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_client_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Client $client, ClientRepository $clientRepository): Response
+    public function edit(Request $request, $id, ClientRepository $clientRepository): Response
     {
+        $client = $clientRepository->find($id);
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
@@ -69,8 +71,9 @@ class ClientController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_client_delete', methods: ['POST'])]
-    public function delete(Request $request, Client $client, ClientRepository $clientRepository): Response
+    public function delete(Request $request, $id, ClientRepository $clientRepository): Response
     {
+        $client = $clientRepository->find($id);
         if ($this->isCsrfTokenValid('delete' . $client->getId(), $request->request->get('_token'))) {
             $clientRepository->remove($client, true);
         }

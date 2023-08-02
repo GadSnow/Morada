@@ -41,16 +41,20 @@ class ProviderController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_provider_show', methods: ['GET'])]
-    public function show(Provider $provider): Response
+    public function show(ProviderRepository $providerRepository, $id): Response
     {
+        $provider = $providerRepository->find($id);
+
         return $this->render('admin_entities/provider/show.html.twig', [
             'provider' => $provider,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_provider_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Provider $provider, ProviderRepository $providerRepository): Response
+    public function edit(Request $request, $id, ProviderRepository $providerRepository): Response
     {
+        $provider = $providerRepository->find($id);
+
         $form = $this->createForm(ProviderType::class, $provider);
         $form->handleRequest($request);
 
@@ -68,8 +72,9 @@ class ProviderController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_provider_delete', methods: ['POST'])]
-    public function delete(Request $request, Provider $provider, ProviderRepository $providerRepository): Response
+    public function delete(Request $request, $id, ProviderRepository $providerRepository): Response
     {
+        $provider = $providerRepository->find($id);
         if ($this->isCsrfTokenValid('delete' . $provider->getId(), $request->request->get('_token'))) {
             $providerRepository->remove($provider, true);
         }

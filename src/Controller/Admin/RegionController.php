@@ -41,16 +41,19 @@ class RegionController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_region_show', methods: ['GET'])]
-    public function show(Region $region): Response
+    public function show(RegionRepository $regionRepository, $id): Response
     {
+        $region = $regionRepository->find($id);
         return $this->render('admin_entities/region/show.html.twig', [
             'region' => $region,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_region_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Region $region, RegionRepository $regionRepository): Response
+    public function edit(Request $request, $id, RegionRepository $regionRepository): Response
     {
+        $region = $regionRepository->find($id);
+
         $form = $this->createForm(RegionType::class, $region);
         $form->handleRequest($request);
 
@@ -68,8 +71,10 @@ class RegionController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_region_delete', methods: ['POST'])]
-    public function delete(Request $request, Region $region, RegionRepository $regionRepository): Response
+    public function delete(Request $request, $id, RegionRepository $regionRepository): Response
     {
+        $region = $regionRepository->find($id);
+
         if ($this->isCsrfTokenValid('delete' . $region->getId(), $request->request->get('_token'))) {
             $regionRepository->remove($region, true);
         }

@@ -41,16 +41,18 @@ class HousingController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_housing_show', methods: ['GET'])]
-    public function show(Housing $housing): Response
+    public function show(HousingRepository $housingRepository, $id): Response
     {
+        $housing = $housingRepository->find($id);
         return $this->render('admin_entities/housing/show.html.twig', [
             'housing' => $housing,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_housing_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Housing $housing, HousingRepository $housingRepository): Response
+    public function edit(Request $request, $id, HousingRepository $housingRepository): Response
     {
+        $housing = $housingRepository->find($id);
         $form = $this->createForm(HousingType::class, $housing);
         $form->handleRequest($request);
 
@@ -68,8 +70,9 @@ class HousingController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_housing_delete', methods: ['POST'])]
-    public function delete(Request $request, Housing $housing, HousingRepository $housingRepository): Response
+    public function delete(Request $request, $id, HousingRepository $housingRepository): Response
     {
+        $housing = $housingRepository->find($id);
         if ($this->isCsrfTokenValid('delete' . $housing->getId(), $request->request->get('_token'))) {
             $housingRepository->remove($housing, true);
         }

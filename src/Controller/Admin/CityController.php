@@ -41,16 +41,18 @@ class CityController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_city_show', methods: ['GET'])]
-    public function show(City $city): Response
+    public function show(CityRepository $cityRepository, $id): Response
     {
+        $city = $cityRepository->find($id);
         return $this->render('admin_entities/city/show.html.twig', [
             'city' => $city,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_city_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, City $city, CityRepository $cityRepository): Response
+    public function edit(Request $request, $id, CityRepository $cityRepository): Response
     {
+        $city = $cityRepository->find($id);
         $form = $this->createForm(CityType::class, $city);
         $form->handleRequest($request);
 
@@ -69,8 +71,9 @@ class CityController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_city_delete', methods: ['POST'])]
-    public function delete(Request $request, City $city, CityRepository $cityRepository): Response
+    public function delete(Request $request, $id, CityRepository $cityRepository): Response
     {
+        $city = $cityRepository->find($id);
         if ($this->isCsrfTokenValid('delete' . $city->getId(), $request->request->get('_token'))) {
             $cityRepository->remove($city, true);
         }

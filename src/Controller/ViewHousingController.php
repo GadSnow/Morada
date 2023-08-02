@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Housing;
 use App\Entity\HousingSearch;
 use App\Repository\HousingRepository;
+use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,9 +28,11 @@ class ViewHousingController extends AbstractController
         ]);
     }
 
-    #[Route('/bien/{slug}-{id}', name: 'app_view_housing', requirements: ["slug" => "[a-z0-9\-]*"])]
-    public function show(Housing $housing, string $slug): Response
+    #[Route('/biens/{slug}-{id}', name: 'app_view_housing', requirements: ["slug" => "[a-z0-9\-]*"])]
+    public function show(string $slug, $id, HousingRepository $repo): Response
     {
+        $housing = $repo->find($id);
+
         if ($housing->getSlug() !== $slug) {
             return $this->redirectToRoute('app_view_housing', [
                 'id' => $housing->getId(),

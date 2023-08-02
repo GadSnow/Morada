@@ -41,16 +41,19 @@ class QuarterController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_quarter_show', methods: ['GET'])]
-    public function show(Quarter $quarter): Response
+    public function show(QuarterRepository $quarterRepository, $id): Response
     {
+        $quarter = $quarterRepository->find($id);
         return $this->render('admin_entities/quarter/show.html.twig', [
             'quarter' => $quarter,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_quarter_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Quarter $quarter, QuarterRepository $quarterRepository): Response
+    public function edit(Request $request, $id, QuarterRepository $quarterRepository): Response
     {
+        $quarter = $quarterRepository->find($id);
+
         $form = $this->createForm(QuarterType::class, $quarter);
         $form->handleRequest($request);
 
@@ -68,8 +71,10 @@ class QuarterController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_quarter_delete', methods: ['POST'])]
-    public function delete(Request $request, Quarter $quarter, QuarterRepository $quarterRepository): Response
+    public function delete(Request $request, $id, QuarterRepository $quarterRepository): Response
     {
+        $quarter = $quarterRepository->find($id);
+
         if ($this->isCsrfTokenValid('delete' . $quarter->getId(), $request->request->get('_token'))) {
             $quarterRepository->remove($quarter, true);
         }
