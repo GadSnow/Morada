@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col-md-7">
 					{% if housing.filename %}
-						<img src="{{ vich_uploader_asset(housing, 'imageFile')}}" alt="Image" style="width: 100%; height: 450px;">
+						<img src="{{ vich_uploader_asset(housing, 'imageFile') }}" alt="Image" style="width: 100%; height: 450px;">
 					{% else %}
 						<img src="/images/housings/empty.jpg" alt="Image" style="width: 100%; height: 450px;">
 					{% endif %}
@@ -22,6 +22,23 @@
 					<div class="text-primary fs-1 fw-bold">{{ housing.formattedPrice }}
 						€</div>
 					<a href="#" class="btn btn-primary">Contacter l'agence</a>
+					<div id="contactForm" class="mt-4">
+						{{ form_start(form) }}
+						<div class="row">
+							<div class="col">{{ form_row(form.firstname) }}</div>
+							<div class="col">{{ form_row(form.lastname) }}</div>
+						</div>
+
+						<div class="row">
+							<div class="col">{{ form_row(form.phone) }}</div>
+							<div class="col">{{ form_row(form.email) }}</div>
+						</div>
+						{{ form_widget(form) }}
+						<div class="form-group">
+							<button class="btn btn-primary">Envoyer</button>
+						</div>
+						{{ form_end(form) }}
+					</div>
 				</div>
 			</div>
 		</div>

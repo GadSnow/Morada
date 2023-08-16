@@ -41,7 +41,8 @@ class HousingSearchType extends AbstractType
         $resolver->setDefaults([
             'data_class' => HousingSearch::class,
             'method' => "GET",
-            'csrf_protection' => false
+            'csrf_protection' => false,
+            'action' => 'biens'
         ]);
     }
 

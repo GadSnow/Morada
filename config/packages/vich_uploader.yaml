@@ -17,6 +17,10 @@ vich_uploader:
       uri_prefix: /images/regions
       upload_destination: "%kernel.project_dir%/public/images/regions"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+    quarters_image:
+      uri_prefix: /images/quarters
+      upload_destination: "%kernel.project_dir%/public/images/quarters"
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
   #mappings:
   #    products:

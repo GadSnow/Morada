@@ -36,11 +36,13 @@
 			{% for housing in housings %}
 				<div class="col-md-3">
 					<div class="text-center">
-						{% if housing.filename  %}
-							<img src="{{ vich_uploader_asset(housing, 'imageFile') }}" alt="Image" style="width: 300px; heigth: 240px">
-						{% else %}
-							<img src="/images/housings/empty.jpg" alt="Image" style="width: 300px; height: 240px">
-						{% endif %}
+						<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}">
+							{% if housing.filename  %}
+								<img src="{{ vich_uploader_asset(housing, 'imageFile') }}" alt="Image" style="width: 300px; heigth: 240px">
+							{% else %}
+								<img src="/images/housings/empty.jpg" alt="Image" style="width: 300px; height: 240px">
+							{% endif %}
+						</a>
 						<div class="card-body text-center">
 							<h5 class="housing__title card-title">
 								<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}" class="fw-bold text-decoration-none">{{ housing.title }}</a>
@@ -58,6 +60,24 @@
 			{% endfor %}
 		</div>
 		<h1 class="fs-1 fw-bold">Lieux</h1>
+		<div class="row">
+			{% for quarter in quarters %}
+				<div class="col-md-3">
+					<div class="text-center">
+						<a href="{{ path('app_view_quarter', { slug: quarter.slug }) }}">
+							{% if quarter.filename  %}
+								<img src="{{ vich_uploader_asset(quarter, 'imageFile') }}" alt="Image" style="width: 300px; heigth: 240px">
+							{% else %}
+								<img src="/images/housings/empty.jpg" alt="Image" style="width: 300px; height: 240px">
+							{% endif %}
+							<h5 class="quarter__title card-title">
+								<a href="{{ path('app_view_quarter', { slug: quarter.slug }) }}" class="fw-bold text-decoration-none">{{ quarter.quarterName }}</a>
+							</h5>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 	</div>
 
 {% endblock %}

@@ -11,6 +11,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\FetchMode;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @extends ServiceEntityRepository<Housing>
@@ -65,32 +66,43 @@ class HousingRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function findBySearchQuery(HousingSearch $search)
+    public function findBySearchQuery(Request $request = null)
     {
         $query = $this->findVisibleQuery()
             ->leftJoin('App\Entity\Quarter', 'q', Join::WITH, "q.id = h.quarter")
             ->leftJoin('App\Entity\City', 'c', Join::WITH, "c.id = q.city")
             ->leftJoin('App\Entity\Region', 'r', Join::WITH, "r.id = c.region");
-
-        if ($search->getMaxPrice()) {
+        if ($request != null && !$request->query->has('biens')) {
+            $query = $query->setMaxResults(4);
+        }
+        if ($request->query->get('maxPrice') != "") {
             $query = $query
                 ->andWhere('h.price <= :price')
-                ->setParameter(':price', $search->getMaxPrice());
+                ->setParameter(':price', $request->query->getInt('maxPrice'));
         }
 
-        if ($search->getCity()) {
+        if ($request->query->get('city') != "") {
             $query = $query
                 ->andWhere("q.quarterName = :place OR r.regionName = :place OR c.cityName = :place")
-                ->setParameter(':place', $search->getCity());
+                ->setParameter(':place', $request->query->get('city'));
         }
 
-        if ($search->getRooms()) {
+        if ($request->query->get('rooms') != "") {
             $query = $query
                 ->andWhere('h.numberOfRooms = :rooms')
-                ->setParameter(':rooms', $search->getRooms());
+                ->setParameter(':rooms', $request->query->get('rooms'));
         }
 
         return $query->getQuery();
+    }
+
+    public function findHousingByQuarter($quarter_name)
+    {
+        return $this->findVisibleQuery()
+            ->leftJoin('App\Entity\Quarter', 'q', Join::WITH, "q.id = h.quarter")
+            ->andWhere(('q.quarterName = :quarter_name'))
+            ->setParameters(['quarter_name' => $quarter_name])
+            ->getQuery();
     }
 
     //    /**

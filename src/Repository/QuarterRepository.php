@@ -39,28 +39,36 @@ class QuarterRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Quarter[] Returns an array of Quarter objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('q.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findFirsts()
+    {
+        return $this->createQueryBuilder('q')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Quarter
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Quarter[] Returns an array of Quarter objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('q')
+    //            ->andWhere('q.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('q.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Quarter
+    //    {
+    //        return $this->createQueryBuilder('q')
+    //            ->andWhere('q.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

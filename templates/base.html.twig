@@ -21,13 +21,15 @@
 				<div>
 					<ul>
 						<li class="morada__brand">
-
-							<a href="{{ path('app_home')}}"><img src="images/logoM.png" style="width: 130px; heigth: 100px;" alt=""></a>
+							<a href="{{ path('app_home')}}"><img src="{{ asset('images/logoM.png')}} " style="width: 130px; heigth: 100px;" alt=""></a>
 						</li>
 					</ul>
 				</div>
 				<div>
 					<ul class="nav__items">
+						<li>
+							<a class="nav__link" href="{{path('app_home')}}">Accueil</a>
+						</li>
 						<li>
 							<a class="nav__link" href="{{path('app_index_housings')}}">Louer</a>
 						</li>
@@ -40,10 +42,11 @@
 						{% if app.user %}
 							<div class="admin_nav">
 								<li>
-									<a href="{{ path('app_admin_entities')}}" class="nav-link">Tableau de bord</a>
+									<a class="nav__link" href="{{ path('app_admin_entities')}}" class="nav-link">
+										| Tableau de bord</a>
 								</li>
 								<li>
-									<a href="{{ path('app_logout')}}" class="nav-link">Se déconnecter</a>
+									<a class="nav__link" href="{{ path('app_logout')}}" class="nav-link">Se déconnecter</a>
 								</li>
 							</div>
 						{% endif %}
@@ -71,22 +74,22 @@
 					<h4 class="text-uppercase fw-bold">Contact info</h4>
 					<p>
 						<div>
-							<img src="images/icons/map-locator.png" alt="">
+							<img src="{{ asset('images/icons/map-locator.png') }}" alt="">
 							1234 dubreka, Toumanya
 						</div>
 						<div>
-							<img src="images/icons/phone.png" alt="">
+							<img src="{{ asset('images/icons/phone.png') }}" alt="">
 							+224 66874587
 						</div>
 						<div>
-							<img src="images/icons/email.png" alt="">
+							<img src="{{ asset('images/icons/email.png') }}" alt="">
 							contact@gmail.com
 						</div>
 					</p>
 					<div class="social">
-						<a href="#"><img src="images/icons/facebook(1).png" alt=""></a>
-						<a href="#"><img src="images/icons/whatsapp(1).png" alt=""></a>
-						<a href="#"><img src="images/icons/instagram(1).png" alt=""></a>
+						<a href="#"><img src="{{ asset('images/icons/facebook(1).png') }}" alt=""></a>
+						<a href="#"><img src="{{ asset('images/icons/whatsapp(1).png') }}" alt=""></a>
+						<a href="#"><img src="{{ asset('images/icons/instagram(1).png') }}" alt=""></a>
 					</div>
 
 				</div>

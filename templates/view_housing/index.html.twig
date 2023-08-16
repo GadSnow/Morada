@@ -11,24 +11,26 @@
 		<div class="row">
 			{% for housing in housings %}
 				<div class="col-md-3">
-					<div class="card mt-4">
-						{% if housing.filename  %}
-							<img src="{{ vich_uploader_asset(housing, 'imageFile') }}" alt="Image">
-						{% else %}
-							<img src="/images/housings/empty.jpg" alt="Image">
-						{% endif %}
-						<div class="card-body">
-							<h5 class="card-title">
-								<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}" class="fw-bold text-decoration-none">{{ housing.title }}</a>
-							</h5>
-							<p class="card-text">{{ housing.quarter.quarterName }}
-								-
-								{{ housing.bedrooms }}
-								chambres
-							</p>
-							<div class="text-primary fw-bold fs-3">{{ housing.formattedPrice }}
-								Fg</div>
-						</div>
+					<div class="text-center">
+						<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}">
+							{% if housing.filename  %}
+								<img src="{{ vich_uploader_asset(housing, 'imageFile') }}" alt="Image" style="width: 300px; heigth: 240px">
+							{% else %}
+								<img src="/images/housings/empty.jpg" alt="Image" style="width: 300px; height: 240px">
+							{% endif %}
+							<div class="card-body text-center">
+								<h5 class="housing__title card-title">
+									<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}" class="fw-bold text-decoration-none">{{ housing.title }}</a>
+								</h5>
+								<p style="margin-bottom: 0px;">{{housing.quarter.quarterName}}
+									-
+									{{ housing.bedrooms }}
+									chambres
+								</p>
+								<div class="fw-bold fs-3 mb-4">{{ housing.formattedPrice }}
+									Fg</div>
+							</div>
+						</a>
 					</div>
 				</div>
 			{% endfor %}

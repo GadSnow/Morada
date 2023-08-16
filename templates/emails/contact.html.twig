@@ -1,0 +1,34 @@
+<div class="container">
+	<h1>Demande de contact
+		{{ contact.housing.title }}</h1>
+	<p>Une nouvelle personne souhaiterais avoir plus d'informations à propos
+												        du bien
+		<a href="{{ url('app_view_housing', {id: contact.housing.id, slug: contact.housing.slug}) }}">{{ contact.housing.title }}</a>
+	</p>
+	<table class="table table-striped">
+		<td class="font-weight-bold">Prénom:
+		</td>
+		<td>{{ contact.firstname }}</td>
+	</tr>
+	<tr>
+		<td class="font-weight-bold">Nom:
+		</td>
+		<td>{{ contact.lastname }}</td>
+	</tr>
+	<tr>
+		<td class="font-weight-bold">Téléphone:
+		</td>
+		<td>{{ contact.phone }}</td>
+	</tr>
+	<tr>
+		<td class="font-weight-bold">Email:
+		</td>
+		<td>{{ contact.email }}</td>
+	</tr>
+	<tr>
+		<td class="font-weight-bold">Message:
+		</td>
+		<td>{{ contact.message|nl2br }}</td>
+	</tr>
+
+</table></div>

@@ -12,5 +12,6 @@ services:
     exclude:
       - "../src/DependencyInjection/"
       - "../src/Kernel.php"
+      - "../src/Entity/"
   # order is important in this file because service definitions
   # always *replace* previous ones; add your own service configuration below

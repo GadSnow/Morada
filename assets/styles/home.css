@@ -137,7 +137,8 @@
     color: black;
 }
 
-.housing__title {
+.housing__title,
+.quarter__title {
     margin-top: 15px;
     text-transform: uppercase;
 }
