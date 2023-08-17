@@ -55,7 +55,7 @@ class HousingRepository extends ServiceEntityRepository
     public function findLatest()
     {
         return $this->findVisibleQuery()
-            ->setMaxResults(4)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
@@ -73,7 +73,7 @@ class HousingRepository extends ServiceEntityRepository
             ->leftJoin('App\Entity\City', 'c', Join::WITH, "c.id = q.city")
             ->leftJoin('App\Entity\Region', 'r', Join::WITH, "r.id = c.region");
         if ($request != null && !$request->query->has('biens')) {
-            $query = $query->setMaxResults(4);
+            $query = $query->setMaxResults(3);
         }
         if ($request->query->get('maxPrice') != "") {
             $query = $query

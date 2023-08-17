@@ -42,7 +42,7 @@ class QuarterRepository extends ServiceEntityRepository
     public function findFirsts()
     {
         return $this->createQueryBuilder('q')
-            ->setMaxResults(4)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }

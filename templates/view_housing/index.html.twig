@@ -10,7 +10,7 @@
 		<h1 class="fs-1 fw-bold">Tous nos biens</h1>
 		<div class="row">
 			{% for housing in housings %}
-				<div class="col-md-3">
+				<div class="col-lg-4">
 					<div class="text-center">
 						<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}">
 							{% if housing.filename  %}

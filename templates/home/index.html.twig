@@ -34,7 +34,7 @@
 		<h1 class="fs-1 fw-bold text-center mb-4">Nos hébergements</h1>
 		<div class="row">
 			{% for housing in housings %}
-				<div class="col-md-3">
+				<div class="col-lg-4">
 					<div class="text-center">
 						<a href="{{ path('app_view_housing', {slug: housing.slug, id: housing.id}) }}">
 							{% if housing.filename  %}
@@ -59,10 +59,10 @@
 				</div>
 			{% endfor %}
 		</div>
-		<h1 class="fs-1 fw-bold">Lieux</h1>
+		<h1 class="fs-1 fw-bold text-center mt-4">Lieux</h1>
 		<div class="row">
 			{% for quarter in quarters %}
-				<div class="col-md-3">
+				<div class="col-lg-4">
 					<div class="text-center">
 						<a href="{{ path('app_view_quarter', { slug: quarter.slug }) }}">
 							{% if quarter.filename  %}

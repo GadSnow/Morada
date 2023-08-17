@@ -58,10 +58,10 @@ class ViewHousingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $notification->notify($contact);
             $this->addFlash('success', 'Votre email a été bien envoyé.');
-            // return $this->redirectToRoute('app_view_housing', [
-            //     'id' => $housing->getId(),
-            //     'slug' => $housing->getSlug()
-            // ]);
+            return $this->redirectToRoute('app_view_housing', [
+                'id' => $housing->getId(),
+                'slug' => $housing->getSlug()
+            ]);
         }
 
         return $this->renderForm('view_housing/show.html.twig', [

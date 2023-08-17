@@ -6,6 +6,15 @@
 {% block body %}
 	<div class="p-5 mb-4 bg-light rounded-3">
 		<div class="container">
+
+			{% for message in app.flashes("success") %}
+				<div class="alert alert-success">{{ message }}</div>
+			{% endfor %}
+
+			{% if not form.vars.valid %}
+				<div class="alert alert-danger">Veuillez remplir correctement le formulaire.</div>
+			{% endif %}
+
 			<div class="row">
 				<div class="col-md-7">
 					{% if housing.filename %}
@@ -21,8 +30,8 @@
 					</h2>
 					<div class="text-primary fs-1 fw-bold">{{ housing.formattedPrice }}
 						€</div>
-					<a href="#" class="btn btn-primary">Contacter l'agence</a>
-					<div id="contactForm" class="mt-4">
+					<a href="#" class="btn btn-primary" id="contactButton" {% if form.vars.submitted %} style="display: none;" {% endif %}>Contacter l'agence</a>
+					<div id="contactForm" class="mt-4" {% if not form.vars.submitted %} style="display: none;" {% endif %}>
 						{{ form_start(form) }}
 						<div class="row">
 							<div class="col">{{ form_row(form.firstname) }}</div>
